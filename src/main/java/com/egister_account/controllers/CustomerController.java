@@ -30,6 +30,7 @@ public class CustomerController {
             customer.setCreate_date(new Date(System.currentTimeMillis()));
             customer.setUpdate_date(new Date(System.currentTimeMillis()));
             customer.setPassword(HashPW);
+            customer.setActivity(true);
             customer_repo.save(customer);
             return new ResponseEntity<>(customer,HttpStatus.OK);
         } catch (Exception e){
