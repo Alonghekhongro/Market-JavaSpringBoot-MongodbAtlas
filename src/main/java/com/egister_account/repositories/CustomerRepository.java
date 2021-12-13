@@ -12,6 +12,9 @@ import java.util.Optional;
 public interface CustomerRepository extends MongoRepository<Customer, String> {
     @Query("{username:'?0'}")
     Customer findByUsername(String username);
+    @Query("{password:'?0'}")
+    Customer findByPassword(String pw);
     @Query("{activity: true}")
     List<Customer> getAllCustomer();
+    Boolean existsByUsername(String username);
 }

@@ -2,12 +2,13 @@ package com.egister_account.services;
 
 import com.egister_account.models.Customer;
 
-import java.security.NoSuchAlgorithmException;
+
 import java.util.List;
-import java.util.Optional;
 
 public interface CustomerService {
-    public Customer findByUsername(String username);
-    public Customer saveUser(Customer user) throws NoSuchAlgorithmException;
+    public Boolean getUser(String username, String password);
+    public Customer getFullUser(String username);
+    public Customer saveUser(Customer user);
+    public Customer loadUser(Customer user);
     public List<Customer> getAllCustomer();
 }
