@@ -4,12 +4,13 @@ import com.egister_account.models.Customer;
 import com.egister_account.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
-@Component
+@Service
 public class CustomerServiceImp implements CustomerService {
     @Autowired
     CustomerRepository customer_repo;

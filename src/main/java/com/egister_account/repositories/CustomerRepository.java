@@ -6,7 +6,6 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface CustomerRepository extends MongoRepository<Customer, String> {
@@ -16,5 +15,4 @@ public interface CustomerRepository extends MongoRepository<Customer, String> {
     Customer findByPassword(String pw);
     @Query("{activity: true}")
     List<Customer> getAllCustomer();
-    Boolean existsByUsername(String username);
 }
