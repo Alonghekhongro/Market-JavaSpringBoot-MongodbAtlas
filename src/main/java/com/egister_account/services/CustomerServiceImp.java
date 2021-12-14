@@ -3,18 +3,20 @@ package com.egister_account.services;
 import com.egister_account.models.Customer;
 import com.egister_account.repositories.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class CustomerServiceImp implements CustomerService {
     @Autowired
     CustomerRepository customer_repo;
-
+    @Override
+    public Optional<Customer> findbyID(String id){
+        return customer_repo.findById(id);
+    }
     @Override
     public Boolean getUser(String username, String password) {
         String pw = customer_repo.findByUsername(username).getPassword();

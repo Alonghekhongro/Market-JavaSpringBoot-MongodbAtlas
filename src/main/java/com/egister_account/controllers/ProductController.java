@@ -20,7 +20,7 @@ public class ProductController {
     @Autowired
     ProductRepository productRepository;
     @GetMapping("/find")
-    public ResponseEntity<List<Product>> FindProduct(@RequestParam(value = "name", defaultValue = "")
+    public ResponseEntity<List<Product>> FindProduct(@RequestParam(value = "id", defaultValue = "")
                                                      String name) {
         try {
             return new ResponseEntity<>(productRepository.search(name),HttpStatus.OK);
