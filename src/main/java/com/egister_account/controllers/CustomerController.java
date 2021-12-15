@@ -47,11 +47,14 @@ public class CustomerController {
     public ResponseEntity<?> FindCustomer(@PathVariable("id") String id){
         try {
             Optional<Customer> customer_date = customer_imp.findbyID(id);
-            Customer cus = customer_date.get();
-            cus.setPassword(null);
-            return new ResponseEntity<>(cus,HttpStatus.OK);
+            if( customer_date.isPresent()){
+                Customer cus = customer_date.get();
+                cus.setPassword(null);
+                return new ResponseEntity<>(cus,HttpStatus.OK);
+            }
+            return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);
         } catch (Exception e) {
-            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);
         }
     }
 }
