@@ -1,8 +1,10 @@
 package com.egister_account.controllers;
 
 import com.egister_account.models.Product;
+import com.egister_account.models.StoreProduct;
 import com.egister_account.repositories.ProductRepository;
 import com.egister_account.services.ProductServiceImp;
+import com.egister_account.services.StoreProductServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +20,13 @@ public class ProductController {
     //@Autowired
     //ProductServiceImp productServiceImp;
     @Autowired
-    ProductRepository productRepository;
+    StoreProductServiceImp storeProductServiceImp;
     @GetMapping("/find")
-    public ResponseEntity<List<Product>> FindProduct(@RequestParam(value = "id", defaultValue = "")
+    public ResponseEntity<List<StoreProduct>> FindProduct(@RequestParam(value = "name", defaultValue = "")
                                                      String name) {
         try {
-            return new ResponseEntity<>(productRepository.search(name),HttpStatus.OK);
+            return new ResponseEntity<>(storeProductServiceImp.getStoreProduct(name),
+                    HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
         }

@@ -1,12 +1,11 @@
 package com.egister_account.services;
 
-import com.egister_account.repositories.ProductRepository;
+import com.egister_account.repositories.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-
 @Service
-public class ProductServiceImp implements ProductService {
+public class StoreServiceImp implements StoreService {
     @Autowired
-    ProductRepository productRepository;
+    StoreRepository storeRepository;
 }

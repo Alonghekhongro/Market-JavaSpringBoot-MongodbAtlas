@@ -1,4 +1,5 @@
 package com.egister_account.services;
 
-public interface ProductService {
+public interface StoreService {
+
 }

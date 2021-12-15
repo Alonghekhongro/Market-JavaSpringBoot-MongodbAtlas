@@ -9,10 +9,10 @@ import java.util.List;
 
 @Repository
 public interface CustomerRepository extends MongoRepository<Customer, String> {
+    @Query("{username:'?0', password:'?1'}")
+    Customer findByUser(String username, String password);
     @Query("{username:'?0'}")
-    Customer findByUsername(String username);
-    @Query("{password:'?0'}")
-    Customer findByPassword(String pw);
+    Customer findByUserName(String username);
     @Query("{activity: true}")
     List<Customer> getAllCustomer();
 }

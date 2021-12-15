@@ -18,22 +18,8 @@ public class CustomerServiceImp implements CustomerService {
         return customer_repo.findById(id);
     }
     @Override
-    public Boolean getUser(String username, String password) {
-        String pw = customer_repo.findByUsername(username).getPassword();
-        String pw1 = customer_repo.findByPassword(password).getPassword();
-        String us = customer_repo.findByUsername(username).getUsername();
-        String us1 = customer_repo.findByPassword(password).getUsername();
-        if (us.equals(us1)){
-            if(pw.equals(pw1)){
-                return true;
-            }
-            return false;
-        }
-        return false;
-    }
-    @Override
     public Customer getFullUser(String username){
-        return customer_repo.findByUsername(username);
+        return customer_repo.findByUserName(username);
     }
     @Override
     public Customer saveUser(Customer user){
@@ -47,7 +33,8 @@ public class CustomerServiceImp implements CustomerService {
     }
     @Override
     public Customer loadUser(Customer user) {
-        if(getUser(user.getUsername(), user.getPassword()))
+        Customer customer = customer_repo.findByUser(user.getUsername(), user.getPassword());
+        if(customer != null)
             return user;
         return null;
     }
