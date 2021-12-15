@@ -21,8 +21,11 @@ public class CustomerController {
     @PostMapping("/register")
     public ResponseEntity<?> Register(@RequestBody Customer customer){
         try{
-            customer_imp.saveUser(customer);
-            return new ResponseEntity<>(customer_imp.saveUser(customer),HttpStatus.OK);
+            Customer c = customer_imp.saveUser(customer);
+            if (c == null){
+                return new ResponseEntity<>("Username existed",HttpStatus.NOT_ACCEPTABLE);
+            }
+            return new ResponseEntity<>(c,HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
