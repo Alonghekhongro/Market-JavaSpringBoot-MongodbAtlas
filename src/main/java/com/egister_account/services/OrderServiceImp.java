@@ -5,6 +5,7 @@ import com.egister_account.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -12,12 +13,17 @@ public class OrderServiceImp implements OrderService{
     @Autowired
     OrderRepository orderRepository;
     @Override
-    public List<Order> getAllOrder(String id){
-        System.out.println(id);
-        for (Order order : orderRepository.getAllOrder(id))
-        {
-            System.out.println(order.getId());
+    public List<Order> getAllOrder(String cus_id){
+        List<Order> list_order = new ArrayList<Order>();
+        if(orderRepository.getAllOrder(cus_id).isEmpty()){
+            return list_order;
         }
-        return orderRepository.getAllOrder(id);
+        for (Order order : orderRepository.getAllOrder(cus_id)){
+            if (order.getCustomer_id().equals(cus_id)){
+                list_order.add(order);
+            }
+        }
+        return list_order;
     }
+
 }

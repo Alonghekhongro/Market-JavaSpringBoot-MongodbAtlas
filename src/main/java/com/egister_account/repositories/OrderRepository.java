@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.repository.Query;
 import java.util.List;
 
 public interface OrderRepository extends MongoRepository<Order, String> {
-    @Query("{customer_id:'?0', activity: true}")
+    @Query("{activity: true}")
     List<Order> getAllOrder(String id);
-
 }
