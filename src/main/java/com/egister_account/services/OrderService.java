@@ -5,5 +5,5 @@ import com.egister_account.models.Order;
 import java.util.List;
 
 public interface OrderService {
-    public List<Order> getAllOrder();
+    public List<Order> getAllOrder(String id);
 }

@@ -22,6 +22,9 @@ public class StoreProductServiceImp implements StoreProductService{
         List<Product> list_product =  productRepository.search(product_name);
         List<Store> list_store = storeRepository.findAll();
         List<StoreProduct> list_store_product = new ArrayList<StoreProduct>();
+        if (list_product.isEmpty()){
+            return list_store_product;
+        }
         for(Store store : list_store){
             List<Product> temptPList = new ArrayList<Product>();
             for(Product product : list_product){

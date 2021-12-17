@@ -12,7 +12,12 @@ public class OrderServiceImp implements OrderService{
     @Autowired
     OrderRepository orderRepository;
     @Override
-    public List<Order> getAllOrder(){
-        return orderRepository.getAllOrder();
+    public List<Order> getAllOrder(String id){
+        System.out.println(id);
+        for (Order order : orderRepository.getAllOrder(id))
+        {
+            System.out.println(order.getId());
+        }
+        return orderRepository.getAllOrder(id);
     }
 }

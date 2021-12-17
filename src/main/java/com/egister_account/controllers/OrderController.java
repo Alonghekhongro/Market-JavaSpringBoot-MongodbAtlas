@@ -17,10 +17,10 @@ import java.util.List;
 public class OrderController {
     @Autowired
     OrderServiceImp orderServiceImp;
-    @GetMapping("/history")
-    public ResponseEntity<?> OrderHistory(){
+    @GetMapping("/history/{id}")
+    public ResponseEntity<?> OrderHistory(@PathVariable("id") String id){
         try{
-            List<Order> lo = orderServiceImp.getAllOrder();
+            List<Order> lo = orderServiceImp.getAllOrder(id);
             if (lo.isEmpty()){
                 return new ResponseEntity<>("No order found", HttpStatus.NOT_FOUND);
             }
