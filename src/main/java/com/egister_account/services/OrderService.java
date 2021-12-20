@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface OrderService {
     public List<Order> getAllOrder(String id);
+    public boolean deleteById(String id);
 }

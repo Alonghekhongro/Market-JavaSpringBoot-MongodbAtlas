@@ -29,4 +29,15 @@ public class OrderController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> DeleteOrder(@PathVariable("id") String id){
+        try{
+            if(orderServiceImp.deleteById(id)){
+                return new ResponseEntity<>("Delete success",HttpStatus.OK);
+            }
+            return new ResponseEntity<>("Delete fail",HttpStatus.NOT_FOUND);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }

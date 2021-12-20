@@ -25,5 +25,13 @@ public class OrderServiceImp implements OrderService{
         }
         return list_order;
     }
+    @Override
+    public boolean deleteById(String id){
+        if(orderRepository.existsById(id)){
+            orderRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
 
 }
