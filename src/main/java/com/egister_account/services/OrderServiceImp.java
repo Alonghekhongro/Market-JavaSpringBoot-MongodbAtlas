@@ -15,10 +15,10 @@ public class OrderServiceImp implements OrderService{
     @Override
     public List<Order> getAllOrder(String cus_id){
         List<Order> list_order = new ArrayList<Order>();
-        if(orderRepository.getAllOrder(cus_id).isEmpty()){
+        if(orderRepository.getAllOrder().isEmpty()){
             return list_order;
         }
-        for (Order order : orderRepository.getAllOrder(cus_id)){
+        for (Order order : orderRepository.getAllOrder()){
             if (order.getCustomer_id().equals(cus_id)){
                 list_order.add(order);
             }

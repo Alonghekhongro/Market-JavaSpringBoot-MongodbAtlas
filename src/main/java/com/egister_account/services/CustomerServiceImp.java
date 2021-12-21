@@ -23,18 +23,15 @@ public class CustomerServiceImp implements CustomerService {
     }
     @Override
     public Customer saveUser(Customer user){
-        if (user != null) {
-            for (Customer customer : getAllCustomer()){
-                if (customer.getUsername().equals(user.getUsername())){
-                    return null;
-                }
+        for (Customer customer : getAllCustomer()){
+            if (customer.getUsername().equals(user.getUsername())){
+                return null;
             }
-            user.setCreate_date(new Date(System.currentTimeMillis()));
-            user.setUpdate_date(new Date(System.currentTimeMillis()));
-            user.setActivity(true);
-            return customer_repo.save(user);
         }
-        return null;
+        user.setCreate_date(new Date(System.currentTimeMillis()));
+        user.setUpdate_date(new Date(System.currentTimeMillis()));
+        user.setActivity(true);
+        return customer_repo.save(user);
     }
     @Override
     public Customer loadUser(Customer user) {
