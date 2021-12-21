@@ -1,6 +1,8 @@
 package com.market.services;
 
+import com.market.models.Register;
 import com.market.models.Store;
+import com.market.repositories.RegisterRepository;
 import com.market.repositories.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,29 +14,35 @@ import java.util.List;
 public class StoreServiceImp implements StoreService {
     @Autowired
     StoreRepository storeRepository;
+    @Autowired
+    RegisterRepository registerRepository;
     @Override
-    public Store saveStore(Store store){
-        for (Store st : getAllStore()){
-            if (st.getUsername().equals(store.getUsername())){
-                return null;
-            }
-        }
-        store.setCreate_date(new Date(System.currentTimeMillis()));
-        store.setUpdate_date(new Date(System.currentTimeMillis()));
-        store.setActivity(true);
-        store.setContract_start("");
-        store.setContract_end("");
-        store.setRules("");
-        return storeRepository.save(store);
-    }
-    @Override
-    public Store reviewStore (Store store){
-        for (Store st : storeRepository.getAllStore()){
-            if (st.getId().equals(store.getId())){
-                st.setContract_start(store.getContract_start());
-                st.setContract_end(store.getContract_end());
-                st.setRules(store.getRules());
-                return storeRepository.save(st);
+    public Store reviewStore (Store storee){
+        for (Register re : registerRepository.getAllRegister()){
+            if (re.getId().equals(storee.getId())){
+                Store store = new Store();
+                store.setStore_name(re.getStore_name());
+                store.setPhone(re.getPhone());
+                store.setEmail(re.getEmail());
+                store.setPerson_name(re.getPerson_name());
+                store.setPerson_phone(re.getPerson_phone());
+                store.setRegion(re.getRegion());
+                store.setUsername(storee.getUsername());
+                store.setPassword(storee.getPassword());
+                store.setContract_start(storee.getContract_start());
+                store.setContract_end(storee.getContract_end());
+                store.setRules(storee.getRules());
+                store.setUrl_image(re.getUrl_image());
+                store.setActivity(true);
+                store.setAddress(re.getAddress());
+                store.setCreate_date(new Date(System.currentTimeMillis()));
+                store.setUpdate_date(new Date(System.currentTimeMillis()));
+                for (Store st : storeRepository.getAllStore()){
+                    if (st.getStore_name().equals(store.getStore_name())){
+                        return null;
+                    }
+                }
+                return storeRepository.save(store);
             }
         }
         return null;

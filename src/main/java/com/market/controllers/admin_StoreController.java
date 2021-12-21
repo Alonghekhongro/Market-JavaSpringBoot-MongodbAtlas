@@ -18,7 +18,8 @@ public class admin_StoreController {
         try{
             Store st = storeServiceImp.reviewStore(store);
             if (st == null){
-                return new ResponseEntity<>("Store not found", HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>("Registration form not found or " +
+                        "have been insert" , HttpStatus.NOT_FOUND);
             }
             return new ResponseEntity<>(st,HttpStatus.OK);
         } catch (Exception e){
