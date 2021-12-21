@@ -1,8 +1,6 @@
 package com.egister_account.controllers;
 
-import com.egister_account.models.Customer;
 import com.egister_account.models.Order;
-import com.egister_account.services.CustomerServiceImp;
 import com.egister_account.services.OrderServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,7 +12,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/order")
-public class OrderController {
+public class customer_OrderController {
     @Autowired
     OrderServiceImp orderServiceImp;
     @GetMapping("/history/{id}")

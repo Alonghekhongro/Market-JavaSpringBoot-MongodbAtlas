@@ -1,21 +1,18 @@
 package com.egister_account.controllers;
 
 import com.egister_account.models.Customer;
-import com.egister_account.models.Product;
 import com.egister_account.services.CustomerServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
 @RestController
 @RequestMapping("/customer")
-public class CustomerController {
+public class customer_CustomerController {
     @Autowired
     CustomerServiceImp customer_imp;
     @PostMapping("/register")

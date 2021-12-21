@@ -12,7 +12,7 @@ import java.util.List;
 @CrossOrigin
 @RestController
 @RequestMapping("/product")
-public class ProductController {
+public class customer_ProductController {
     //@Autowired
     //ProductServiceImp productServiceImp;
     @Autowired

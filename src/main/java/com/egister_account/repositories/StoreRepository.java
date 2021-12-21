@@ -4,6 +4,9 @@ import com.egister_account.models.Store;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
-public interface StoreRepository extends MongoRepository<Store, String> {
+import java.util.List;
 
+public interface StoreRepository extends MongoRepository<Store, String> {
+    @Query("{activity: true}")
+    List<Store> getAllStore();
 }
