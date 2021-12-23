@@ -1,16 +1,16 @@
 package com.market.repositories;
 
-import com.market.models.Store;
+import com.market.models.Admin;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 
 import java.util.List;
 
-public interface StoreRepository extends MongoRepository<Store, String> {
+public interface AdminRepository extends MongoRepository<Admin, String> {
     @Query("{username:'?0', password:'?1'}")
-    Store findByUser(String username, String password);
+    Admin findByUser(String username, String password);
     @Query("{username:'?0'}")
-    Store findByUserName(String username);
+    Admin findByUserName(String username);
     @Query("{activity: true}")
-    List<Store> getAllStore();
+    List<Admin> getAllAdmin();
 }

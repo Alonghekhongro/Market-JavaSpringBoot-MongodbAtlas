@@ -48,6 +48,17 @@ public class StoreServiceImp implements StoreService {
         return null;
     }
     @Override
+    public Store loadUser(Store store){
+        Store st = storeRepository.findByUser(store.getUsername(), store.getPassword());
+        if(st != null)
+            return store;
+        return null;
+    }
+    @Override
+    public Store getFullUser(String username){
+        return storeRepository.findByUserName(username);
+    }
+    @Override
     public List<Store> getAllStore() {
         return storeRepository.getAllStore();
     }
