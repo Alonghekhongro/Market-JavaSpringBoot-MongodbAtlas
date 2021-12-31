@@ -27,7 +27,7 @@ public class customer_OrderController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @PostMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> DeleteOrder(@PathVariable("id") String id){
         try{
             if(orderServiceImp.deleteById(id)){
