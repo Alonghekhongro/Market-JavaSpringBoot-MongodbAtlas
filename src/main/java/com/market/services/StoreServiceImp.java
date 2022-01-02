@@ -2,13 +2,16 @@ package com.market.services;
 
 import com.market.models.Register;
 import com.market.models.Store;
+import com.market.models.Store_sta;
 import com.market.repositories.RegisterRepository;
 import com.market.repositories.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StoreServiceImp implements StoreService {
@@ -61,5 +64,27 @@ public class StoreServiceImp implements StoreService {
     @Override
     public List<Store> getAllStore() {
         return storeRepository.getAllStore();
+    }
+    @Override
+    public Optional<Store> getStore(String id){
+        if(storeRepository.existsById(id)){
+            return storeRepository.findById(id);
+        }
+        return null;
+    }
+    @Override
+    public List<Store_sta> getAllStoreByRegion(){
+        List<Store_sta> list_store_sta = new ArrayList<Store_sta>();
+        List<String> regions = new ArrayList<String>();
+        regions.add("Vùng đỏ");
+        regions.add("Vùng xanh");
+        regions.add("Vùng cam");
+        regions.add("Vùng vàng");
+        for (String region : regions){
+            Integer count =  storeRepository.getAllByRegion(region).size();
+            Store_sta store_sta = new Store_sta(count, region);
+            list_store_sta.add(store_sta);
+        }
+        return list_store_sta;
     }
 }

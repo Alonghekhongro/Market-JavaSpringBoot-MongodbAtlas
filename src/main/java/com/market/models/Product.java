@@ -20,10 +20,11 @@ public class Product {
     private String url_image;
     private Date create_date;
     private Date update_date;
+    private String origin;
 
     public Product(String store_id, String type_id,
                    String type_name, String name, String status,
-                   Integer price, String url_image, String unit) {
+                   Integer price, String url_image, String unit, String origin) {
         super();
         this.store_id = store_id;
         this.type_id = type_id;
@@ -33,6 +34,7 @@ public class Product {
         this.price = price;
         this.url_image = url_image;
         this.unit = unit;
+        this.origin = origin;
     }
 
     public String getId() {
@@ -106,5 +108,13 @@ public class Product {
     }
     public void setUnit(String unit) {
         this.unit = unit;
+    }
+
+    public String getOrigin() {
+        return origin;
+    }
+
+    public void setOrigin(String origin) {
+        this.origin = origin;
     }
 }

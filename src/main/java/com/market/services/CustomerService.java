@@ -1,6 +1,7 @@
 package com.market.services;
 
 import com.market.models.Customer;
+import com.market.models.Customer_sta;
 
 
 import java.util.List;
@@ -12,4 +13,5 @@ public interface CustomerService {
     public Customer loadUser(Customer user);
     public Optional<Customer> findbyID(String id);
     public List<Customer> getAllCustomer();
+    public List<Customer_sta> getAllCustomerByRegion();
 }

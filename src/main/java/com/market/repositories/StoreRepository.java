@@ -11,6 +11,8 @@ public interface StoreRepository extends MongoRepository<Store, String> {
     Store findByUser(String username, String password);
     @Query("{username:'?0'}")
     Store findByUserName(String username);
+    @Query("{region:'?0'}")
+    List<Store> getAllByRegion(String region);
     @Query("{activity: true}")
     List<Store> getAllStore();
 }

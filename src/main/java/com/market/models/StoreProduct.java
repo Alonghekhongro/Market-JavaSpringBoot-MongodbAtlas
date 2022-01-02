@@ -3,9 +3,9 @@ package com.market.models;
 import java.util.List;
 
 public class StoreProduct {
-    String store_name;
-    String store_address;
-    List<Product> product;
+    private String store_name;
+    private String store_address;
+    private List<Product> product;
 
     public StoreProduct(){super();}
     public StoreProduct(String store_name, String store_address, List<Product> product) {

@@ -13,4 +13,6 @@ public interface ProductRepository extends MongoRepository<Product, String> {
     //{name: {$regex: /Giá/, $options: 'i'}}
     @Query("{name: {$regex: /?0/, $options: 'i'}}")
     List<Product> search(String name);
+    @Query("{activity: true}")
+    List<Product> getAllProduct();
 }
