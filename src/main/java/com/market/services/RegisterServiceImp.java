@@ -14,6 +14,9 @@ public class RegisterServiceImp implements RegisterService{
     RegisterRepository registerRepository;
     @Override
     public Register saveStoreRegister(Register register){
+        if (register.getStore_name().isBlank()){
+            return null;
+        }
         for (Register re : getAllRegister()){
             if (re.getStore_name().equals(register.getStore_name())){
                 return null;

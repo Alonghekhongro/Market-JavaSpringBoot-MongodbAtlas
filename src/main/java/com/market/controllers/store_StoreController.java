@@ -28,7 +28,7 @@ public class store_StoreController {
         try{
             Register re = registerServiceImp.saveStoreRegister(register);
             if (re == null){
-                return new ResponseEntity<>("Registration form sent", HttpStatus.NOT_ACCEPTABLE);
+                return new ResponseEntity<>("Registration form sent or name is null", HttpStatus.NOT_ACCEPTABLE);
             }
             return new ResponseEntity<>(re,HttpStatus.OK);
         } catch (Exception e){

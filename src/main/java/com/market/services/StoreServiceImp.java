@@ -45,6 +45,7 @@ public class StoreServiceImp implements StoreService {
                         return null;
                     }
                 }
+                registerRepository.deleteById(re.getId());
                 return storeRepository.save(store);
             }
         }
