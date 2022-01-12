@@ -41,28 +41,24 @@ public class StoreProductServiceImp implements StoreProductService{
         return list_store_product;
     }
     @Override
-    public StoreProduct getOneStoreProduct(OneStoreProduct oneStoreProduct){
+    public List<StoreProduct> getOneStoreProduct(OneStoreProduct oneStoreProduct){
         List<Product> list_product =  productRepository.search(oneStoreProduct.getProduct_name());
         Optional<Store> storee = storeRepository.findById(oneStoreProduct.getStore_id());
-        StoreProduct store_product = new StoreProduct();
+        List<StoreProduct> list_store_product = new ArrayList<StoreProduct>();
+        List<Product> temptPList = new ArrayList<Product>();
         Store store = new Store();
-        if (list_product.isEmpty()){
-            return null;
-        }
-        if(storee.isEmpty()){
-            return null;
+        if (list_product.isEmpty() || storee.isEmpty()){
+            return list_store_product;
         }
         store = storee.get();
         for(Product product : list_product){
             if(product.getStore_id().equals(store.getId())){
-                List<Product> temptPList = new ArrayList<Product>();
-                store_product.setStore_name(store.getStore_name());
-                store_product.setStore_address(store.getAddress());
                 temptPList.add(product);
-                store_product.setProduct(temptPList);
-                return store_product;
             }
         }
-        return null;
+        StoreProduct storeProduct = new StoreProduct(
+                store.getStore_name(), store.getAddress(), temptPList);
+        list_store_product.add(storeProduct);
+        return list_store_product;
     }
 }

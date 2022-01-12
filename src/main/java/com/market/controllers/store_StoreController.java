@@ -89,12 +89,11 @@ public class store_StoreController {
     @GetMapping("/find")
     public ResponseEntity<?> FindProduct(@RequestBody OneStoreProduct oneStoreProduct) {
         try {
-            StoreProduct storeProduct = storeProductServiceImp.getOneStoreProduct(oneStoreProduct);
-            if(storeProduct == null){
+            List<StoreProduct> storeProduct = storeProductServiceImp.getOneStoreProduct(oneStoreProduct);
+            if(storeProduct.isEmpty()){
                 return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);
             }
-            return new ResponseEntity<>(storeProduct,
-                    HttpStatus.OK);
+            return new ResponseEntity<>(storeProduct, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
         }

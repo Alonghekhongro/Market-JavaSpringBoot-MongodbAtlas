@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface StoreProductService {
     public List<StoreProduct> getStoreProduct(String product_name);
-    public StoreProduct getOneStoreProduct(OneStoreProduct oneStoreProduct);
+    public List<StoreProduct> getOneStoreProduct(OneStoreProduct oneStoreProduct);
 }
