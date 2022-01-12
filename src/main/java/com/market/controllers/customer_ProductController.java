@@ -25,7 +25,7 @@ public class customer_ProductController {
             if(storeProduct.isEmpty()){
                 return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);
             }
-            return new ResponseEntity<>(storeProductServiceImp.getStoreProduct(name),
+            return new ResponseEntity<>(storeProduct,
                     HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);

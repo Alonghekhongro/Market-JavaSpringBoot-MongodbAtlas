@@ -1,5 +1,6 @@
 package com.market.models;
 
+import org.bson.codecs.pojo.annotations.BsonId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -22,12 +23,10 @@ public class Product {
     private Date update_date;
     private String origin;
 
-    public Product(String store_id, String type_id,
+    public Product(
                    String type_name, String name, String status,
                    Integer price, String url_image, String unit, String origin) {
         super();
-        this.store_id = store_id;
-        this.type_id = type_id;
         this.type_name = type_name;
         this.name = name;
         this.status = status;

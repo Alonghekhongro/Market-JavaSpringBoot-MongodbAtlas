@@ -1,16 +1,16 @@
 package com.market.controllers;
 
-import com.market.models.Product;
-import com.market.models.Register;
-import com.market.models.Store;
+import com.market.models.*;
 import com.market.services.ProductServiceImp;
 import com.market.services.RegisterServiceImp;
+import com.market.services.StoreProductServiceImp;
 import com.market.services.StoreServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin
@@ -23,6 +23,8 @@ public class store_StoreController {
     StoreServiceImp storeServiceImp;
     @Autowired
     ProductServiceImp productServiceImp;
+    @Autowired
+    StoreProductServiceImp storeProductServiceImp;
     @PostMapping("/register")
     public ResponseEntity<?> RegisterSale(@RequestBody Register register){
         try{
@@ -61,13 +63,40 @@ public class store_StoreController {
             return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);
         }
     }
-    @PostMapping("/product")
-    public ResponseEntity<?> AddProduct(@RequestBody Product product){
+    @PutMapping("/delete_product/{id}")
+    public ResponseEntity<?> DeleteProduct(@PathVariable("id") String id){
         try{
-            Product pr = productServiceImp.saveProduct(product);
+            if(productServiceImp.deleteById(id)){
+                return new ResponseEntity<>("Delete success", HttpStatus.OK);
+            }
+            return new ResponseEntity<>("Delete fail",HttpStatus.NOT_FOUND);
+        } catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @PutMapping("/product/update")
+    public ResponseEntity<?> UpdateProduct(@RequestBody Product product){
+        try{
+            Product pr = productServiceImp.updateProduct(product);
+            if(pr == null){
+                return new ResponseEntity<>("Id not found", HttpStatus.NOT_FOUND);
+            }
             return new ResponseEntity<>(pr,HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/find")
+    public ResponseEntity<?> FindProduct(@RequestBody OneStoreProduct oneStoreProduct) {
+        try {
+            StoreProduct storeProduct = storeProductServiceImp.getOneStoreProduct(oneStoreProduct);
+            if(storeProduct == null){
+                return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(storeProduct,
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null,HttpStatus.NOT_FOUND);
         }
     }
 }
