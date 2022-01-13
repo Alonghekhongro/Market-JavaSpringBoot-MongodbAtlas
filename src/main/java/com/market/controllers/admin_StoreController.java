@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -42,6 +43,19 @@ public class admin_StoreController {
             return new ResponseEntity<>(re,HttpStatus.OK);
         } catch (Exception e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+    @GetMapping("/find/register/{id}")
+    public ResponseEntity<?> FindRegister(@PathVariable("id") String id){
+        try {
+            Optional<Register> register = registerServiceImp.findbyID(id);
+            if( register.isPresent()){
+                Register reg = register.get();
+                return new ResponseEntity<>(reg,HttpStatus.OK);
+            }
+            return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return new ResponseEntity<>("Not found",HttpStatus.NOT_FOUND);
         }
     }
 }
