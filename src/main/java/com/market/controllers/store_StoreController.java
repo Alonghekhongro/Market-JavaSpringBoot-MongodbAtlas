@@ -86,7 +86,7 @@ public class store_StoreController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping("/find")
+    @PostMapping("/find")
     public ResponseEntity<?> FindProduct(@RequestBody OneStoreProduct oneStoreProduct) {
         try {
             List<StoreProduct> storeProduct = storeProductServiceImp.getOneStoreProduct(oneStoreProduct);
