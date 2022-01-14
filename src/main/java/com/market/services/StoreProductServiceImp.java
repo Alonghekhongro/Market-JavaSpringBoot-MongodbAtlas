@@ -56,13 +56,13 @@ public class StoreProductServiceImp implements StoreProductService{
                 temptPList.add(product);
             }
         }
+        if(temptPList.isEmpty())
+        {
+            return list_store_product;
+        }
         StoreProduct storeProduct = new StoreProduct(
                 store.getStore_name(), store.getAddress(), temptPList);
         list_store_product.add(storeProduct);
-        if(temptPList.isEmpty())
-        {
-            return null;
-        }
         return list_store_product;
     }
 }
